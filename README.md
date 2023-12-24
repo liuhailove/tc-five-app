@@ -27,11 +27,13 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 
 # 4. yarn dev
 
-# 5. yarn add vue-router@next
+# 5. yarn add vue-router@next 或者yarn add vue-router@4
 
 # 6. yarn run build
 
 # 7.cordova create tc-three-app com.shop.tc.three.app
+
+# 8. yarn add axios
 
 # 8.cd tc-three-app
 
