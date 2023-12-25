@@ -51,31 +51,31 @@ const routes: Array<RouteRecordRaw> = [
             component: () => import("@/views/user/Index.vue"),
             children: [
                 {
-                    path:"address",
-                    name:'userAddress',
-                    component:()=>import("@/views/user/address/Index.vue"),
-                    children:[
+                    path: "address",
+                    name: 'userAddress',
+                    component: () => import("@/views/user/address/Index.vue"),
+                    children: [
                         {
-                            path:'add',
-                            name:'addAddress',
-                            component:()=>import("@/views/user/address/Add.vue")
+                            path: 'add',
+                            name: 'addAddress',
+                            component: () => import("@/views/user/address/Add.vue")
                         },
                         {
-                            path:'edit/:addressId',
-                            name:'editAddress',
-                            component:()=>import("@/views/user/address/Edit.vue")
+                            path: 'edit/:addressId',
+                            name: 'editAddress',
+                            component: () => import("@/views/user/address/Edit.vue")
                         }
                     ]
                 },
                 {
-                    path:'coupon',
-                    name:'userCoupon',
-                    component:()=>import('@/views/user/coupon/Index.vue')
+                    path: 'coupon',
+                    name: 'userCoupon',
+                    component: () => import('@/views/user/coupon/Index.vue')
                 },
                 {
-                    path:'order',
-                    name:'userOrder',
-                    component:()=>import('@/views/user/order/Index.vue')
+                    path: 'order',
+                    name: 'userOrder',
+                    component: () => import('@/views/user/orderNew/Index.vue')
                 }
             ]
         }
@@ -83,15 +83,22 @@ const routes: Array<RouteRecordRaw> = [
     },
     {
         // 登录
+        path: '/parent',
+        name: 'parent',
+        component: () => import("@/views/parent/Parent.vue")
+    },
+    {
+        // 登录
         path: '/login',
         name: 'login',
         component: () => import("@/views/login/Index.vue")
-    }
+    },
 ];
 
 const router = createRouter({
         history: createWebHashHistory(),
-        routes: routes
+        routes: routes,
+        scrollBehavior: () => ({y: 0}),
     } as RouterOptions
 );
 

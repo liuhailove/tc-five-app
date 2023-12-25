@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {Toast} from 'vant'
+import {showToast, Toast} from 'vant'
 
 axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
 const service = axios.create({
@@ -22,8 +22,8 @@ service.interceptors.request.use(
 service.interceptors.response.use(
     response => {
         if (response.data.code != undefined) {
-            if (response.data.code !== 0) {
-                Toast.fail('请求失败')
+            if (response.data.code !== 200) {
+                showToast('请求失败')
                 return Promise.reject(response.data.msg || 'error')
             } else {
                 return response.data

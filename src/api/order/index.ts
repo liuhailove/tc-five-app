@@ -23,7 +23,7 @@ export function orderToken() {
 // 用户订单
 export function getOrderList() {
     return request({
-        url:'/v1/orders/getOrderList',
+        url:'/orders/getOrderList',
         method:'get'
     })
 }

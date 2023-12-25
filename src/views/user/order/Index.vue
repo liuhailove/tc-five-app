@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import OrderList from './components/OrderList/Index.vue'
+import OrderList from '@/views/user/order/components/OrderList/Index.vue'
 import {getOrderList} from '@/api/order'
 export default {
   name: "index",
@@ -59,29 +59,6 @@ export default {
           console.log(response.data)
           if (this.activeName===0){
             this.orderList=response.data
-            // var mockOrderList=[
-            //     {
-            //       status:1,
-            //       orderNo:"order1",
-            //       totalPrice:100,
-            //       goodsList:[
-            //           {
-            //             goodsName:'goodsName1',
-            //             goodsCount:10,
-            //             goodsPrice:100,
-            //             goodsSku:'goodsSku1',
-            //             goodsImageUrl:'',
-            //           }
-            //       ]
-            //     },
-            // ]
-            // const dialogVisibled=computed(() => {
-            //   return  mockOrderList
-            // })
-            // this.orderList= reactive({
-            //
-            // })
-
           }else{
             this.orderList=response.data.filter(item=>item.status===this.activeName)
           }

@@ -6,9 +6,9 @@
           <van-cell
               :value="formatOrderStatus(item.status)">
             <template #title>
-              <span class="custom-title" style="width:100px">
-                {{ formatOrderNo(item.orderNo) }}
-              </span>
+           <span class="custom-title" style="width: 100px">
+              {{ formatOrderNo(item.orderNo) }}
+           </span>
             </template>
           </van-cell>
         </div>
@@ -25,7 +25,6 @@
             </template>
           </van-card>
         </div>
-
         <div class="order-footer">
           <van-cell :title="formatOrderTotalPrice(item.status,item.totalPrice)">
             <template #default>
@@ -63,23 +62,24 @@
 </template>
 
 <script>
+import {ref, watchEffect} from "vue";
+
 export default {
   props: {
-    orderList: Array,
-    msg: String,
-  },
-  mounted() {
-    console.log(this.orderList)
-  },
-  watchEffect: {
-    orderList: function (newValue, oldValue) {
-      this.orderList = newValue
+    orderListValue: {
+      type: Array,
+      required: true
     }
   },
-  methods: {
-    onClickPayment() {
-    },
-    formatOrderStatus(status) {
+  setup(props) {
+    const orderList = ref(props.orderListValue);
+
+    watchEffect(() => {
+      console.info("watchEffect:" + props.orderListValue)
+      orderList.value = props.orderListValue;
+    });
+
+    const formatOrderStatus = (status) => {
       let desc;
       if (status === 1) {
         desc = '等待付款'
@@ -93,19 +93,28 @@ export default {
         desc = '交易关闭'
       }
       return desc
-    },
-    formatOrderNo(orderNo) {
+    };
+    const formatOrderNo = (orderNo) => {
       return '订单号：' + orderNo
-    },
-    formatOrderTotalPrice(status, totalPrice) {
+    };
+    const formatOrderTotalPrice = (status, totalPrice) => {
       let prefix = '已付金额'
       if (status === 1) {
         prefix = '实付金额'
       }
       return prefix + '：¥' + totalPrice
-    }
+    };
+
+    return {
+      orderList,
+      formatOrderStatus,
+      formatOrderNo,
+      formatOrderTotalPrice
+    };
   }
-}
+};
+
+
 </script>
 
 <style lang="less" scoped>

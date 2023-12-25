@@ -1,4 +1,4 @@
-import {createApp} from 'vue'
+import Vue, {createApp} from 'vue'
 import './style.css'
 import App from './App.vue'
 import store from './store'
@@ -24,6 +24,7 @@ import Vuex from 'vuex'
 
 import SvgIcon from '@/components/SvgIcon/Index.vue' // svg组件
 import VTop from '@/components/backToTop/Index.vue'
+
 // register globally
 //
 // const req = require.context('./svg', false, /\.svg$/)
@@ -112,7 +113,13 @@ app.use(Sidebar).use(SidebarItem);
 // 懒加载
 app.use(Lazyload);
 app.use(store);
+
+
 app.mount('#app');
+
+
+
+
 
 
 
